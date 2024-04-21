@@ -1,0 +1,4 @@
+repository "MiniFerma@AntonTretyakov1@cloud"
+  path "/"
+    br "/main"
+    co "/main"

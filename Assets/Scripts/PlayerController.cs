@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
         var selectedItem = inventoryManager.inventorySlots[inventoryManager.selectedSlot].GetComponentInChildren<InventoryItem>();
         if (selectedItem.item.name != "shovel")
         {
+            playerInteractionGameObject = GameObject.FindGameObjectsWithTag("SeedBed");
             foreach (var player in playerInteractionGameObject)
             {
                 PlayerInteraction playerInteraction = player.GetComponent<PlayerInteraction>();

@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Xml.Serialization;
 using UnityEngine;
-using static UnityEditor.Progress;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using Assets.Scripts;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -18,6 +18,7 @@ public class InventoryManager : MonoBehaviour
     {
         ChangeSelectedSlot(0);
     }
+
 
     public void ChangeSelectedSlot(int newValue)
     {
