@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 
@@ -17,7 +18,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
     
     public Transform parentAfterDrag;
 
-    public int count = 1;
+    [FormerlySerializedAs("count")] public int countItem;
 
     public Item item;
 
@@ -31,8 +32,8 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
 
     public void RefreshCount()
     {
-        countText.text = count.ToString();
-        bool textActive = count > 1;
+        countText.text = countItem.ToString();
+        bool textActive = countItem > 1;
         countText.gameObject.SetActive(textActive);
     }
 

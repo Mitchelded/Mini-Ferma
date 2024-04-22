@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class LevelSystem : MonoBehaviour
 {
-    [SerializeField]
-    private int level = 1;
+    public int level = 1;
 
     public int levelExp = 0;
 
@@ -22,6 +21,17 @@ public class LevelSystem : MonoBehaviour
         expText.text = $"{levelExp}/{levelExpMax}";
     }
 
+    public void UpdateText()
+    {
+        if (progressBar != null)
+        {
+            progressBar.current = levelExp;
+            progressBar.maximum = levelExpMax;
+        }
+        levelText.text = $"Level: {level}";
+        expText.text = $"{levelExp}/{levelExpMax}";
+    }
+    
     // Update is called once per frame
     void FixedUpdate()
     {

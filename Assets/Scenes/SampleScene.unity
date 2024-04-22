@@ -6308,6 +6308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5472937a8e7942041b621acec373cf2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryManager: {fileID: 640816841}
   cactusPrefab: {fileID: 3444067828522478131, guid: 76dae22019fdc7c41aa34451f9d192a9, type: 3}
   seedbedPrefab: {fileID: 5259736873593099465, guid: c302666c161d5b249ac7e9d1f70228ac, type: 3}
   cactuses: []
@@ -7906,7 +7907,7 @@ MonoBehaviour:
   image: {fileID: 2337257333023233193}
   countText: {fileID: 0}
   parentAfterDrag: {fileID: 0}
-  count: 1
+  countItem: 1
   item: {fileID: 11400000, guid: 61832616224986646afa10692c127986, type: 2}
 --- !u!224 &2337257333023233195 stripped
 RectTransform:

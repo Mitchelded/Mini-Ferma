@@ -51,13 +51,13 @@ public class PlayerController : MonoBehaviour
                     var t = inventoryManager.inventorySlots[inventoryManager.selectedSlot].GetComponentInChildren<InventoryItem>();
                     if (t != null)
                     {
-                        if (t.count == 1)
+                        if (t.countItem == 1)
                         {
                             inventoryManager.RemoveItem(inventoryManager.inventorySlots[inventoryManager.selectedSlot]);
                         }
                         else
                         {
-                            t.count--;
+                            t.countItem--;
                             t.RefreshCount();
                         }
 

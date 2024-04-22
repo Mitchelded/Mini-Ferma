@@ -17,6 +17,16 @@ namespace Assets.Scripts
             public bool isStartPlowSelected;
             public bool isVegitablesSelected;
             public List<Item> items;
+            public List<int> counts;
+        }
+        
+        [System.Serializable]
+        public class PlayerData
+        {
+            public Vector3 playerPositions;
+            public Quaternion playerRotation;
+            public int playerLevel;
+            public int playerExp;
         }
 
         [System.Serializable]

@@ -54,13 +54,13 @@ public class InventoryManager : MonoBehaviour
         {
             InventorySlot slot = inventorySlots[i];
             InventoryItem itemSlot = slot.GetComponentInChildren<InventoryItem>();
-            if (itemSlot != null && itemSlot.item == item && itemSlot.count < maxStack)
+            if (itemSlot != null && itemSlot.item == item && itemSlot.countItem < maxStack)
             {
                 if (parent != null)
                 {
                     Destroy(parent);
                 }
-                itemSlot.count++;
+                itemSlot.countItem++;
                 itemSlot.RefreshCount();
                 return true;
             }
