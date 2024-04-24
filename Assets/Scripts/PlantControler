@@ -1,0 +1,75 @@
+using UnityEngine;
+using System.Collections;
+
+public class PlantController : MonoBehaviour
+{
+    public float growthTime = 1800f; // 30 минут в секундах
+    private float currentGrowthTime;
+    private bool isRaining = false;
+    private bool isGrowing = true;
+
+    private void Start()
+    {
+        currentGrowthTime = growthTime;
+        StartCoroutine(GrowPlant());
+    }
+
+    private IEnumerator GrowPlant()
+    {
+        while (isGrowing)
+        {
+            if (!isRaining)
+            {
+                // Рост растения на каждом этапе
+                if (currentGrowthTime >= 2 * growthTime / 3)
+                {
+                    // Растение находится в первой стадии роста
+                    // ваш код для первой стадии роста
+                }
+                else if (currentGrowthTime >= growthTime / 3)
+                {
+                    // Растение находится во второй стадии роста
+                    // ваш код для второй стадии роста
+                }
+                else
+                {
+                    // Растение находится в третьей стадии роста
+                    // ваш код для третьей стадии роста
+                }
+
+                // Уменьшение времени роста
+                currentGrowthTime -= Time.deltaTime;
+            }
+            yield return null;
+        }
+    }
+
+    // Метод для изменения состояния дождя
+    public void SetRain(bool raining)
+    {
+        isRaining = raining;
+        if (isRaining)
+        {
+            // Дождь начался, остановка роста растения
+            StopGrowing();
+        }
+        else
+        {
+            // Дождь закончился, возобновление роста растения
+            StartGrowing();
+        }
+    }
+
+    // Метод для остановки роста растения
+    private void StopGrowing()
+    {
+        isGrowing = false;
+    }
+
+    // Метод для возобновления роста растения
+    private void StartGrowing()
+    {
+        isGrowing = true;
+        StartCoroutine(GrowPlant());
+    }
+}
