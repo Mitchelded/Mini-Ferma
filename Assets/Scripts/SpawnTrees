@@ -1,0 +1,39 @@
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Tilemaps;
+
+public class TreeSpawner : MonoBehaviour
+{
+    public Tilemap grassTilemap; // Ссылка на ваш тайлмап с травой
+    public GameObject treePrefab; // Префаб вашего дерева
+
+    private List<Vector3Int> grassTiles = new List<Vector3Int>();
+
+    void Start()
+    {
+        // Находим все тайлы травы и добавляем их в список
+        BoundsInt bounds = grassTilemap.cellBounds;
+        foreach (Vector3Int pos in bounds.allPositionsWithin)
+        {
+            if (grassTilemap.HasTile(pos))
+            {
+                grassTiles.Add(pos);
+            }
+        }
+    }
+
+    public void ChopTree(Vector3Int choppedTreePosition)
+    {
+        // Проверяем, что тайл срубленного дерева находится на тайлмапе травы
+        if (grassTilemap.HasTile(choppedTreePosition))
+        {
+            // Спавним дерево на случайном тайле травы
+            int randomIndex = Random.Range(0, grassTiles.Count);
+            Vector3Int spawnPosition = grassTiles[randomIndex];
+            Instantiate(treePrefab, grassTilemap.CellToWorld(spawnPosition), Quaternion.identity);
+
+            // Удаляем выбранный тайл травы из списка
+            grassTiles.RemoveAt(randomIndex);
+        }
+    }
+}
