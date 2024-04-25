@@ -4,34 +4,29 @@ using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour
 {
-    public GameObject itemPrefab;
-    public Transform itemsParent;
+    public GameObject itemSlotPrefab;
+    public Transform content;
 
-    // Список всех предметов, доступных для продажи
     private List<Item> itemsForSale = new List<Item>();
 
-    // Метод для добавления предметов в магазин
     public void AddItemsToShop(List<Item> items)
     {
         itemsForSale.AddRange(items);
         UpdateShopUI();
     }
 
-    // Метод для обновления интерфейса магазина
     private void UpdateShopUI()
     {
-        // Очищаем текущие предметы в магазине
-        foreach (Transform child in itemsParent)
+        foreach (Transform child in content)
         {
             Destroy(child.gameObject);
         }
 
-        // Создаем UI элементы для каждого предмета в магазине
         foreach (Item item in itemsForSale)
         {
-            GameObject itemObject = Instantiate(itemPrefab, itemsParent);
-            ItemUI itemUI = itemObject.GetComponent<ItemUI>();
-            itemUI.Setup(item);
+            GameObject itemSlot = Instantiate(itemSlotPrefab, content);
+            ItemSlotUI itemSlotUI = itemSlot.GetComponent<ItemSlotUI>();
+            itemSlotUI.Setup(item);
         }
     }
 }
@@ -50,7 +45,7 @@ public class Item
     }
 }
 
-public class ItemUI : MonoBehaviour
+public class ItemSlotUI : MonoBehaviour
 {
     public Text nameText;
     public Image iconImage;
