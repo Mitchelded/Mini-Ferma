@@ -1,0 +1,65 @@
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class ShopManager : MonoBehaviour
+{
+    public GameObject itemPrefab;
+    public Transform itemsParent;
+
+    // Список всех предметов, доступных для продажи
+    private List<Item> itemsForSale = new List<Item>();
+
+    // Метод для добавления предметов в магазин
+    public void AddItemsToShop(List<Item> items)
+    {
+        itemsForSale.AddRange(items);
+        UpdateShopUI();
+    }
+
+    // Метод для обновления интерфейса магазина
+    private void UpdateShopUI()
+    {
+        // Очищаем текущие предметы в магазине
+        foreach (Transform child in itemsParent)
+        {
+            Destroy(child.gameObject);
+        }
+
+        // Создаем UI элементы для каждого предмета в магазине
+        foreach (Item item in itemsForSale)
+        {
+            GameObject itemObject = Instantiate(itemPrefab, itemsParent);
+            ItemUI itemUI = itemObject.GetComponent<ItemUI>();
+            itemUI.Setup(item);
+        }
+    }
+}
+
+public class Item
+{
+    public string itemName;
+    public Sprite itemIcon;
+    public int itemPrice;
+
+    public Item(string name, Sprite icon, int price)
+    {
+        itemName = name;
+        itemIcon = icon;
+        itemPrice = price;
+    }
+}
+
+public class ItemUI : MonoBehaviour
+{
+    public Text nameText;
+    public Image iconImage;
+    public Text priceText;
+
+    public void Setup(Item item)
+    {
+        nameText.text = item.itemName;
+        iconImage.sprite = item.itemIcon;
+        priceText.text = item.itemPrice.ToString();
+    }
+}
