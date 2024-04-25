@@ -1,0 +1,27 @@
+using UnityEngine;
+
+public class ClickableObject : MonoBehaviour
+{
+    private void Update()
+    {
+        // Проверяем, если было совершено касание на экране
+        if (Input.touchCount > 0)
+        {
+            // Получаем первое касание
+            Touch touch = Input.GetTouch(0);
+            
+            // Проверяем, если это касание началось
+            if (touch.phase == TouchPhase.Began)
+            {
+                // Проверяем, попало ли касание на объект
+                if (GetComponent<Collider2D>() == Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(touch.position)))
+                {
+                    // Этот код выполнится при касании на объекте
+                    Debug.Log("Коснулись объекта: " + gameObject.name);
+                    
+                    // Здесь вы можете добавить дополнительные действия, которые должны произойти при касании
+                }
+            }
+        }
+    }
+}
